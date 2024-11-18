@@ -30,7 +30,9 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+SHARED_APPS = [
+    'django_tenants',
+    'app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+TENANT_APPS=["client_app"]
+
+INSTALLED_APPS= SHARED_APPS + [app for app in TENANT_APPS if app not in SHARED_APPS]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
