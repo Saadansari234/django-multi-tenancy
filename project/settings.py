@@ -46,6 +46,7 @@ TENANT_APPS=["client_app"]
 INSTALLED_APPS= SHARED_APPS + [app for app in TENANT_APPS if app not in SHARED_APPS]
 
 MIDDLEWARE = [
+    'django_tenants.middleware.main.TenantMainMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -86,12 +87,12 @@ DATABASES = {
         'USER':'postgres',
         'PASSWORD':'postgres',
         'HOST':'localhost',
-        'PORT': 5432
+        'PORT': 5434
     }
 }   
 
 DATABASE_ROUTERS = (
-    'django_tenants.routers.TenantSyncRouter'
+    'django_tenants.routers.TenantSyncRouter',
 )
 
 
@@ -135,3 +136,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+TENANT_MODEL="app.Client"
+TENANT_DOMAIN_MODEL="app.Domain"
+
+PUBLIC_SCHEMA_URLCONFIG = "app.urls"
