@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{request.tenant}} django app</title>
+</head>
+
+<body>
+    <h1>{{request.tenant}} user creates</h1>
+    <h2>all clients</h2>
+    <ul>
+        {% for client in clients %}
+        <li>
+            {{client.name}}
+        </li>
+        {% endfor %}
+    </ul>
+    <h2>and their domains </h2>
+    <ul>
+        {% for domain in domains %}
+        <li>
+            {{domain}}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <form method="POST" action="/create_client">
+        {% csrf_token %}
+        <h2>add new clients</h2>
+        <input type="text" name="client" placeholder="enter client name" required>
+        <input type="text" name="domain" placeholder="enter domain name" required>
+        <button>submit</button>
+    </form>
+</body>
+
+</html>

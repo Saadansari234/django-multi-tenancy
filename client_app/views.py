@@ -1,13 +1,16 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Employee
 # Create your views here.
 
 def index(request):
-    return HttpResponse(f"<h1>{request.tenant} index</h1>")
+    employees= Employee.objects.all()
+    return render(request, "client_index.html", {"employees":employees})
 
 
-def create_employee(request, name):
-    employee= Employee(name=name)
-    employee.save()
-    return HttpResponse(f"<h1>{request.tenant} employee created</h1>")
+def create_employee(request):
+    if request.POST:
+        name= request.POST.get("name")
+        employee= Employee(name=name)
+        employee.save()
+        return redirect("client_index")
