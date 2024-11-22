@@ -41,7 +41,15 @@ SHARED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-TENANT_APPS=["client_app"]
+TENANT_APPS=[
+    "client_app",         
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles'
+]
 
 INSTALLED_APPS= SHARED_APPS + [app for app in TENANT_APPS if app not in SHARED_APPS]
 
@@ -140,5 +148,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 TENANT_MODEL="app.Client"
 TENANT_DOMAIN_MODEL="app.Domain"
+SHOW_PUBLIC_IF_NO_TENANT_FOUND= True
 
 PUBLIC_SCHEMA_URLCONFIG = "app.urls"

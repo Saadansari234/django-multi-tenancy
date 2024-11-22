@@ -19,7 +19,7 @@
         {% endfor %}
     </ul>
 
-    <form method="POST" action="/create_employee/">
+    <form method="POST" action="{% url 'create_employee' %}">
         {% csrf_token %}
         <input type="text" name="name" placeholder="enter new employee">
         <button>submit</button>

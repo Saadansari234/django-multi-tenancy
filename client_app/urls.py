@@ -7,5 +7,5 @@ from client_app import views
 urlpatterns = [
     path('', views.index, name="client_index"),
     path('client-admin/', client_admin_site.urls), 
-    path('create_employee/',views.create_employee.as_view(), name="create_employee"),
+    path('create_employee/',views.create_employee, name="create_employee"),
 ]
